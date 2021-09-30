@@ -3,7 +3,7 @@ import time
 from bs4 import BeautifulSoup as bs
 import csv
 
-URL = 'https://www.ss.lv/lv/transport/cars/today-5/filter/'
+URL = 'https://www.ss.lv/lv/transport/cars/today-5/sell/filter/'
 LAPAS = 'lapas/'
 DATI = 'dati/'
 
