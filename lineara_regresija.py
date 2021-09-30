@@ -81,21 +81,24 @@ def prognozejam_rezultatu(modelis, dati):
 
 
 def main():
-    datne1 = 'dati/auto_simple.csv'
-    kol_x1 = ['Volume','Weight']
-    kol_y1 = 'CO2'
+    datne1 = 'dati/ss_lv_auto.csv'
+    kol_x1 = ['gads','nobraukums']
+    kol_y1 = 'cena'
 
-    datne2 = 'dati/auto_imports_degviela.csv'
+    datne2 = 'dati/ss_auto_old.csv'
     # kol_x2 = ['wheel-base','length','engine-size','city-mpg']
-    kol_x2 = ['curb-weight','horsepower','engine-size','highway-mpg']
-    kol_y2 = 'price'
+    kol_x2 = ['gads','nobraukums']
+    kol_y2 = 'cena'
 
     datne3 = 'dati/ss_auto.csv'
     kol_x3 = ['gads','tilpums','nobraukums']
     kol_y3 = 'cena'    
 
-    # Sagatavojam datus no datnes
-    X_train, X_test, y_train, y_test = sagatavot_datus(datne3, kol_x3, kol_y3)
+    # Sagatavojam datus no datnes1
+    X_train, X_test, y_train, y_test = sagatavot_datus(datne1, kol_x1, kol_y1)
+
+    # # Sagatavojam datus no datnes2
+    # X_train, X_test, y_train, y_test = sagatavot_datus(datne2, kol_x2, kol_y2)
 
 
     # vienkārša lineārā regresija
@@ -118,19 +121,19 @@ def main():
     modela_kvalitate(y_test, rezultats)
 
     # Lietojam modeli, lai prognozetu rezultātu
-    dati1 = [900,865]
-    dati1_rez = 90
+    # dati1 = [[2021,50]]
+    # dati1_rez = 1
 
     # Prognozejot varam dot 2dimensiju masivu
-    dati2 = [[2337,102,109,30]]
-    dati2_rez = 13950
+    # dati2 = [[2337,102,109,30]]
+    # dati2_rez = 13950
     # Volkswagen,T-Roc,Volkswagen T-Roc,2019,Dīzelis,2.0,30,24900,Pārdodu VW T-Roc 2.0Tdi Dsg 150zs.   Rūpnīcas garantija līdz 2024. gada ,https://i.ss.lv/gallery/4/777/194031/38806185.th2.jpg,/msg/lv/transport/cars/volkswagen/t-roc/bpembf.html
     # Volkswagen,Passat (B8),Volkswagen Passat (B8),2015,Dīzelis,2.0,176,12200
-    dati3 = [[2015, 2.0, 176]]
-    dati3_rez = 12200
+    # dati3 = [[2015, 2.0, 176]]
+    # dati3_rez = 12200
 
-    prognoze = prognozejam_rezultatu(modelis, dati3)
-    print(prognoze, dati3_rez)
+    # prognoze = prognozejam_rezultatu(modelis, dati1)
+    # print(prognoze, dati1_rez)
 
     # print("Ielādējam modeli no datnes")
     # modelis2 = ieladet_modeli("modelis.pickle")
