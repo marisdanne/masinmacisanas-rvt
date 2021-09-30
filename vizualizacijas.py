@@ -49,20 +49,15 @@ def izkliedes_grafiks(datne, x, y, saglabat=False):
     plt.show()
 
 
-datne1 = 'dati/auto_simple.csv'
-datne2 = 'dati/auto_imports.csv'
-datne3 = 'dati/auto_imports_degviela.csv'
-datne4 = 'dati/auto_imports_tips.csv'
-datne6 = 'dati/ss_auto.csv'
-datne7 = 'dati/atbildes.csv'
+datne1 = 'dati/ss_lv_auto.csv'
+datne2 = 'dati/ss_auto_old.csv'
 
-# karstuma_karte(datne6, True)
-# sadalijuma_grafiks(datne6, "nobraukums")
-# sadalijuma_grafiks(datne2, "price")
-# izkliedes_grafiks(datne1, 'Volume', 'CO2')
-# izkliedes_grafiks(datne1, 'Weight', 'CO2')
-# izkliedes_grafiks(datne2, 'price', 'horsepower')
-# izkliedes_grafiks(datne6, 'cena', 'gads')
-# izkliedes_grafiks(datne6, 'cena', 'nobraukums')
-# izkliedes_grafiks(datne6, 'gads', 'cena')
-# izkliedes_grafiks(datne3, 'price', 'fuel-type')
+# karstuma_karte(datne1, True)
+# sadalijuma_grafiks(datne1, "nobraukums")
+# sadalijuma_grafiks(datne1, "cena")
+# sadalijuma_grafiks(datne1, "cena")
+# izkliedes_grafiks(datne1, 'gads', 'cena')
+# izkliedes_grafiks(datne2, 'gads', 'nobraukums')
+# izkliedes_grafiks(datne2, 'gads', 'cena')
+# izkliedes_grafiks(datne1, 'cena', 'nobraukums')
+# izkliedes_grafiks(datne2, 'cena', 'nobraukums')
