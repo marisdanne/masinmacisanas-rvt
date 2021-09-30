@@ -1,9 +1,11 @@
 import requests
 import time
 from bs4 import BeautifulSoup as bs
+import csv
 
 URL = 'https://www.ss.lv/lv/transport/cars/today/sell/'
 LAPAS = 'lapas/'
+DATI = 'dati/'
 
 def saglabat(url, datne):
     rezultats = requests.get(url)
@@ -89,6 +91,14 @@ def info(datne):
 
     return dati
 
+def saglabat_datus(dati):
+    with open(f"{DATI}ss_lv_auto.csv", 'w', encoding='UTF-8', newline="") as f:
+        kolonu_nosaukumi = ['razotajs', 'modelis', 'marka', 'gads', 'tilpums', 'dzinejs', 'nobraukums', 'cena', 'apraksts', 'bilde', 'saite']
+        w = csv.DictWriter(f, fieldnames= kolonu_nosaukumi)
+        w.writeheader()
+        for auto in dati:
+            w.writerow(auto)
+
 
 automasinas = info('lapas/1_lapa.html')
-print(automasinas)
+saglabat_datus(automasinas)
