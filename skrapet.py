@@ -99,6 +99,17 @@ def saglabat_datus(dati):
         for auto in dati:
             w.writerow(auto)
 
+def izvilkt_datus(cik):
+    visi_dati = []
+    for i in range(1, cik + 1):
+        datne = f"{LAPAS}{i}_lapa.html"
 
-automasinas = info('lapas/1_lapa.html')
-saglabat_datus(automasinas)
+        datnes_dati = info(datne)
+        visi_dati += datnes_dati
+
+    saglabat_datus(visi_dati)
+
+
+cik_lapas = 15
+lejupieladet_lapas(cik_lapas)
+izvilkt_datus(cik_lapas)
