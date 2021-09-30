@@ -3,7 +3,7 @@ import time
 from bs4 import BeautifulSoup as bs
 import csv
 
-URL = 'https://www.ss.lv/lv/transport/cars/today/sell/'
+URL = 'https://www.ss.lv/lv/transport/cars/today-5/filter/'
 LAPAS = 'lapas/'
 DATI = 'dati/'
 
@@ -58,6 +58,9 @@ def info(datne):
         auto['bilde'] = lauki[1].find("img")["src"]
         auto['apraksts'] = lauki[2].find("a").text.replace("\n", "")
 
+        if not lauki[3].br:
+            continue
+        
         lauki[3].br.replace_with('!')
         auto['marka'] = lauki[3].text.replace("!", " ")
         auto['razotajs'] = lauki[3].text.split("!")[0]
@@ -86,7 +89,8 @@ def info(datne):
             continue
 
         auto['cena'] = lauki[7].text.replace("  €", "").replace(",", "")
-        
+        # print(auto)
+        # exit()
         dati.append(auto)
 
     return dati
@@ -110,6 +114,7 @@ def izvilkt_datus(cik):
     saglabat_datus(visi_dati)
 
 
-cik_lapas = 15
-lejupieladet_lapas(cik_lapas)
+cik_lapas = 50
+#lejupieladet_lapas(cik_lapas)
 izvilkt_datus(cik_lapas)
+
