@@ -20,6 +20,7 @@ def lejupieladet_lapas(cik):
 
 
 def info(datne):
+    dati = []
     with open(datne, 'r', encoding='UTF-8') as f:
         html = f.read()
 
@@ -40,9 +41,54 @@ def info(datne):
     rindas = auto_tabula.find_all("tr")
 
     for rinda in rindas[1:-1]:
-        print(rinda)
-        print("=======================")
-        print("=======================")
-        print("=======================")    
+        auto = {}
+        # print(rinda)
+        # print("=======================")
+        # print("=======================")
+        # print("=======================")    
 
-info('lapas/1_lapa.html')
+        lauki = rinda.find_all("td")
+        # for lauks in lauki:
+        #     print(lauks)
+        #     print("=======================")
+        
+        auto['saite'] = lauki[1].find("a")["href"]
+        auto['bilde'] = lauki[1].find("img")["src"]
+        auto['apraksts'] = lauki[2].find("a").text.replace("\n", "")
+
+        lauki[3].br.replace_with('!')
+        auto['marka'] = lauki[3].text.replace("!", " ")
+        auto['razotajs'] = lauki[3].text.split("!")[0]
+        auto['modelis'] = lauki[3].text.split("!")[1]
+
+        auto['gads'] = lauki[4].text
+
+        tilpums = lauki[5].text
+        if tilpums[-1] == "D":
+            auto['tilpums'] = tilpums[:-1]
+            auto['dzinejs'] = "Dīzelis"
+        elif tilpums[-1] == "H":
+            auto['tilpums'] = tilpums[:-1]
+            auto['dzinejs'] = "Hibrīds"
+        elif tilpums[-1] == "E":
+            auto['tilpums'] = 0
+            auto['dzinejs'] = "Elektro"
+        else:
+            auto['tilpums'] = tilpums
+            auto['dzinejs'] = "Benzīns"
+        
+        
+        if lauki[6].text != "-":
+            auto['nobraukums'] = lauki[6].text.replace(" tūkst.", "")
+        else:
+            continue
+
+        auto['cena'] = lauki[7].text.replace("  €", "").replace(",", "")
+        
+        dati.append(auto)
+
+    return dati
+
+
+automasinas = info('lapas/1_lapa.html')
+print(automasinas)
